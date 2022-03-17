@@ -28,6 +28,12 @@ async function routes(request, response) {
 
   if (method === "GET") {
     const { stream, type } = await controller.getFileStream(url);
+    const contentType = config.constants[type]
+    if(contentType) {
+      response.writeHead(200, {
+        'Content-Type': contentType,
+      })
+    }
     return stream.pipe(response);
   }
 
@@ -35,8 +41,18 @@ async function routes(request, response) {
   return response.end();
 }
 
+function handlerError(error, response) {
+  if(error.message.includes("ENOENT")) {
+    logger.warn(`assets not found: ${error.message}`);
+    response.writeHead(404);
+    return response.end();
+  }
+
+  logger.error(`caught error on API ${error.stack}`)
+  response.writeHead(500);
+  return response.end();
+}
+
 export function handler(request, response) {
-  return routes(request, response).catch((err) =>
-    logger.error(`Deu ruimmmm: ${err.stack}`)
-  );
+  return routes(request, response).catch((err) => handlerError(error,response));
 }
