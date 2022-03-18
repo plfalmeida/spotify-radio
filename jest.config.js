@@ -11,8 +11,8 @@ const defaultConfig = {
     },
   },
   maxWorkers: '50%',
-  watchIgnorePatters: ['node_modules'],
-  transformIgnorePatters: ['node_modules'],
+  watchPathIgnorePatterns: ['node_modules'],
+  transformIgnorePatterns: ['node_modules'],
 };
 
 export default {
@@ -22,7 +22,7 @@ export default {
       testEnvironment: 'node',
       displayName: 'backend',
       collectCoverageFrom: ['server/', '!server/index.js'],
-      transformIgnorePatters: [...defaultConfig.transformIgnorePatters, 'public'],
+      transformIgnorePatterns: [...defaultConfig.transformIgnorePatterns, 'public'],
       testMatch: ['**/tests/**/server/**/*.test.js'],
     },
     {
@@ -30,7 +30,7 @@ export default {
       testEnvironment: 'jsdom',
       displayName: 'frontend',
       collectCoverageFrom: ['public/'],
-      transformIgnorePatters: [...defaultConfig.transformIgnorePatters, 'server'],
+      transformIgnorePatterns: [...defaultConfig.transformIgnorePatterns, 'server'],
       testMatch: ['**/tests/**/public/**/*.test.js'],
     },
   ],
