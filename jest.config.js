@@ -7,13 +7,13 @@ const defaultConfig = {
       branches: 100,
       functions: 100,
       lines: 100,
-      statements: 100,
-    },
+      statements: 100
+    }
   },
   maxWorkers: '50%',
   watchPathIgnorePatterns: ['node_modules'],
-  transformIgnorePatterns: ['node_modules'],
-};
+  transformIgnorePatterns: ['node_modules']
+}
 
 export default {
   projects: [
@@ -23,7 +23,7 @@ export default {
       displayName: 'backend',
       collectCoverageFrom: ['server/', '!server/index.js'],
       transformIgnorePatterns: [...defaultConfig.transformIgnorePatterns, 'public'],
-      testMatch: ['**/tests/**/server/**/*.test.js'],
+      testMatch: ['**/tests/**/server/**/*.test.js']
     },
     {
       ...defaultConfig,
@@ -31,7 +31,7 @@ export default {
       displayName: 'frontend',
       collectCoverageFrom: ['public/'],
       transformIgnorePatterns: [...defaultConfig.transformIgnorePatterns, 'server'],
-      testMatch: ['**/tests/**/public/**/*.test.js'],
-    },
-  ],
-};
+      testMatch: ['**/tests/**/public/**/*.test.js']
+    }
+  ]
+}

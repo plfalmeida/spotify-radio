@@ -1,11 +1,11 @@
-import { Service } from "./service.js";
+import { Service } from './service.js'
 
 export class Controller {
-  constructor() {
-    this.service = new Service();
+  constructor () {
+    this.service = new Service()
   }
 
-  async getFileStream(fileName) {
-    return this.service.getFileStream(fileName);
+  async getFileStream (fileName) {
+    return this.service.getFileStream(fileName)
   }
 }
